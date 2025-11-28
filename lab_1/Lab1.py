@@ -8,6 +8,7 @@ import pandas as pd
 
 np.random.seed(1000)
 
+
 def QR_dec(A):
     n, m = A.shape
 
@@ -31,6 +32,7 @@ def QR_dec(A):
             R[i, j] = A[:, j] @ Q[:, i]
 
     return Q, R
+
 
 def task_1():
     n = 3
@@ -177,8 +179,10 @@ def task_3():
     print(df)
     print(np.linalg.solve(A, B))
 
+
 def f(x):
     return -1.38*x**3 - 5.42*x**2 + 2.57*x + 10.95
+
 
 def df(x):
     return -4.14*x**2 - 10.84*x + 2.57
@@ -259,6 +263,7 @@ def combined_method(f, df, a, b, tolerance = 1e-5, max_iterations = 100):
     print(f"Достигнуто максимальное число итераций ({max_iterations})")
     return (x_chord + x_tangent) / 2
 
+
 def task_4():
     x = np.linspace(-5, 5, 1000)
     y = f(x)
@@ -295,6 +300,7 @@ def task_4():
         if root is not None:
             combined_roots.append(root)
 
+
 def newton_system(F, J, x0, tol = 1e-4, max_iter = 100):
     x = x0
     for i in range(max_iter):
@@ -306,6 +312,7 @@ def newton_system(F, J, x0, tol = 1e-4, max_iter = 100):
             return x, i+1
     return x, max_iter
 
+
 def F(v):
     x, y = v
     return np.array(
@@ -315,6 +322,7 @@ def F(v):
         ]
     )
 
+
 def J(v):
     x, y = v
     return np.array(
@@ -323,6 +331,7 @@ def J(v):
             [2, -np.sin(y-1)]
         ]
     )
+
 
 def task_5():
     x0 = np.array([0.0, 1.0])
