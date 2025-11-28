@@ -1,9 +1,5 @@
-import math
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy as sp
-from scipy import integrate
-from scipy import linalg
 import pandas as pd
 
 np.random.seed(1000)
