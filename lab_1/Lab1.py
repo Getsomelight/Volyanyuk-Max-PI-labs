@@ -22,7 +22,7 @@ def QR_dec(A):
 
         u[:, i] = A[:, i]
         for j in range(i):
-            u[:, i] -= (A[:, i] @ Q[:, j]) * Q[:, j]
+            u[:, i] -= (A[:, i]@Q[:, j]) * Q[:, j]
 
         Q[:, i] = u[:, i] / np.linalg.norm(u[:, i])
 
@@ -53,7 +53,7 @@ def task_1():
     print("Первые два ортонормированных столбца: ", Q)
     print("Проверка на ортонормированность: ", Q[:, 0] @ Q[:, 1])
 
-    Q,R = QR_dec(A)
+    Q, R = QR_dec(A)
     print("Q = \n", Q)
     print("R = \n", R)
 
@@ -78,11 +78,11 @@ def task_2():
 
     for k in range(4):
         c[k] = np.dot(r, Q[:, k])
-        r = r - c[k] * Q[:, k]
+        r = r - c[k]*Q[:, k]
 
     X = np.zeros(4)
     for i in range(4 - 1, -1, -1):
-        X[i] = (c[i] - np.dot(R[i, i + 1:], X[i + 1:])) / R[i, i]
+        X[i] = (c[i]-np.dot(R[i, i + 1:], X[i + 1:])) / R[i, i]
 
     print("X = ", X)
     print("Check via np.solve", np.linalg.solve(A, B))
@@ -170,7 +170,7 @@ def task_3():
         for i in range(n):
             s1 = np.dot(A[i, :i], x_new[:i])
             s2 = np.dot(A[i, i + 1:], x[i + 1:])
-            x_new[i] = (B[i] - s1 - s2) / A[i, i]
+            x_new[i] = (B[i]-s1-s2) / A[i, i]
         error = np.linalg.norm(x_new - x, np.inf)
         history.append([k + 1, *x_new, error])
         if error < tol:
@@ -179,7 +179,7 @@ def task_3():
             print("Метод не сходится")
             break
         x = x_new
-    df = pd.DataFrame(history, columns = ["i", "x1", "x2", "x3", "err"])
+    df = pd.DataFrame(history, columns=["i", "x1", "x2", "x3", "err"])
     print(df)
     print(np.linalg.solve(A, B))
 
@@ -187,14 +187,14 @@ def task_3():
 
 
 def f(x):
-    return -1.38*x**3 - 5.42*x**2 + 2.57*x + 10.95
+    return -1.38 * x**3 - 5.42 * x**2 + 2.57 * x + 10.95
 
 
 def df(x):
-    return -4.14*x**2 - 10.84*x + 2.57
+    return -4.14 * x**2 - 10.84 * x + 2.57
 
 
-def bisection_method(f, a, b, tolerance = 1e-3, max_iterations = 100):
+def bisection_method(f, a, b, tolerance=1e-3, max_iterations=100):
     if f(a) * f(b) >= 0:
         print(f"На интервале [{a}, {b}] не выполняется условие f(a)*f(b) < 0")
         return None
@@ -206,12 +206,12 @@ def bisection_method(f, a, b, tolerance = 1e-3, max_iterations = 100):
     print("-" * 70)
 
     for k in range(max_iterations):
-        c = (a + b) / 2
+        c = (a+b) / 2
         fc = f(c)
 
         print(f"{k}\t {a:.6f}\t {b:.6f}\t {c:.6f}\t {fc:.6f}")
 
-        if abs(fc) < tolerance or (b - a) / 2 < tolerance:
+        if abs(fc) < tolerance or (b-a) / 2 < tolerance:
             print(f"\nРешение найдено за {k} итераций")
             print(f"x = {c:.6f}, f(x) = {fc:.6f}")
             return c
@@ -222,16 +222,16 @@ def bisection_method(f, a, b, tolerance = 1e-3, max_iterations = 100):
             a = c
 
     print(f"Достигнуто максимальное число итераций ({max_iterations})")
-    return (a + b) / 2
+    return (a+b) / 2
 
 
-def combined_method(f, df, a, b, tolerance = 1e-5, max_iterations = 100):
+def combined_method(f, df, a, b, tolerance=1e-5, max_iterations=100):
     if f(a) * f(b) >= 0:
         print(f"На интервале [{a}, {b}] не выполняется условие f(a)*f(b) < 0")
         return None
 
-    f2_a = -8.28 * a - 10.84  # f''(a)
-    f2_b = -8.28 * b - 10.84  # f''(b)
+    f2_a = -8.28*a - 10.84  # f''(a)
+    f2_b = -8.28*b - 10.84  # f''(b)
 
     print(f"Интервал: [{a}, {b}]")
     print(f"f({a}) = {f(a):.8f}, f({b}) = {f(b):.8f}")
@@ -244,9 +244,9 @@ def combined_method(f, df, a, b, tolerance = 1e-5, max_iterations = 100):
     x_tangent = b
 
     for k in range(max_iterations):
-        x_chord_new = a - f(a) * (b - a) / (f(b) - f(a))
+        x_chord_new = a - f(a) * (b-a) / (f(b)-f(a))
 
-        x_tangent_new = x_tangent - f(x_tangent) / df(x_tangent)
+        x_tangent_new = x_tangent - f(x_tangent)/df(x_tangent)
 
         difference = abs(x_chord_new - x_tangent_new)
 
@@ -267,7 +267,7 @@ def combined_method(f, df, a, b, tolerance = 1e-5, max_iterations = 100):
             a = x_chord_new
 
     print(f"Достигнуто максимальное число итераций ({max_iterations})")
-    return (x_chord + x_tangent) / 2
+    return (x_chord+x_tangent) / 2
 
 
 def task_4():
@@ -309,7 +309,7 @@ def task_4():
     return None
 
 
-def newton_system(F, J, x0, tol = 1e-4, max_iter = 100):
+def newton_system(F, J, x0, tol=1e-4, max_iter=100):
     x = x0
     for i in range(max_iter):
         F_val = F(x)
@@ -317,7 +317,7 @@ def newton_system(F, J, x0, tol = 1e-4, max_iter = 100):
         delta = np.linalg.solve(J_val, -F_val)
         x += delta
         if np.linalg.norm(delta) < tol:
-            return x, i+1
+            return x, i + 1
     return x, max_iter
 
 
@@ -325,8 +325,8 @@ def F(v):
     x, y = v
     return np.array(
         [
-        np.sin(x) + 2 * y - 2,
-        2 * x + np.cos(y - 1) - 0.7
+        np.sin(x) + 2*y - 2,
+        2*x + np.cos(y - 1) - 0.7
         ]
     )
 
@@ -336,7 +336,7 @@ def J(v):
     return np.array(
         [
             [np.cos(x), 2],
-            [2, -np.sin(y-1)]
+            [2, -np.sin(y - 1)]
         ]
     )
 
