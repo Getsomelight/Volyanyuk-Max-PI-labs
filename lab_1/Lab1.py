@@ -390,7 +390,10 @@ def J(v):
 def task_5():
     x0 = np.array([0.0, 1.0])
     sol, iters = newton_system(F, J, x0)
-    print(f"Решение системы: x = {sol[0]:.5f}, y = {sol[1]:.5f}, итераций: {iters}")
+    print(
+        f"Решение системы: x = {sol[0]:.5f}, \
+        y = {sol[1]:.5f}, итераций: {iters}"
+    )
     print("Проверка F(x) = 0:\n", F(sol))
 
     return None
