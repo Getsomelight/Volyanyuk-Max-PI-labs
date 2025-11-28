@@ -442,12 +442,12 @@ def newton_system(
     return x, max_iter
 
 
-def system_equations(v):
+def system_equations(vector):
     """
     System of nonlinear equations F(x,y) = 0
-    v: [x, y] - coordinates of the system
+    vector: [x, y] - coordinates of the system
     """
-    var_x, var_y = v
+    var_x, var_y = vector
     return np.array(
         [
             np.sin(var_x) + 2*var_y - 2,
@@ -456,12 +456,12 @@ def system_equations(v):
     )
 
 
-def jacobian_system(v):
+def jacobian_system(vector):
     """
     Jacobian matrix for the system of equations
-    v: [x, y] - coordinates of the system
+    vector: [x, y] - coordinates of the system
     """
-    var_x, var_y = v
+    var_x, var_y = vector
     return np.array(
         [
             [np.cos(var_x), 2],
