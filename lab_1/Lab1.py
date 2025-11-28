@@ -332,11 +332,16 @@ def task_5():
 
 
 def main():
-    print("Задание 1: "); task_1()
-    print("\n\n\nЗадание 2: "); task_2()
-    print("\n\n\nЗадание 3: "); task_3()
-    print("\n\n\nЗадание 4: "); task_4()
-    print("\n\n\nЗадание 5: "); task_5()
+    print("Задание 1: ")
+    task_1()
+    print("\n\n\nЗадание 2: ")
+    task_2()
+    print("\n\n\nЗадание 3: ")
+    task_3()
+    print("\n\n\nЗадание 4: ")
+    task_4()
+    print("\n\n\nЗадание 5: ")
+    task_5()
 
 
 if __name__ == "__main__":
