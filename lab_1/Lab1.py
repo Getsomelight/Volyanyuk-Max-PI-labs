@@ -192,7 +192,10 @@ def task_3():
             print("Метод не сходится")
             break
         x = x_new
-    df = pd.DataFrame(history, columns=["i", "x1", "x2", "x3", "err"])
+    df = pd.DataFrame(
+        history,
+        columns=["i", "x1", "x2", "x3", "err"]
+    )
     print(df)
     print(np.linalg.solve(A, B))
 
@@ -207,7 +210,10 @@ def df(x):
     return -4.14 * x**2 - 10.84 * x + 2.57
 
 
-def bisection_method(f, a, b, tolerance=1e-3, max_iterations=100):
+def bisection_method(
+        f, a, b,
+        tolerance=1e-3,
+        max_iterations=100):
     if f(a) * f(b) >= 0:
         print(f"На интервале [{a}, {b}] не выполняется условие f(a)*f(b) < 0")
         return None
@@ -238,7 +244,10 @@ def bisection_method(f, a, b, tolerance=1e-3, max_iterations=100):
     return (a+b) / 2
 
 
-def combined_method(f, df, a, b, tolerance=1e-5, max_iterations=100):
+def combined_method(
+        f, df, a, b,
+        tolerance=1e-5,
+        max_iterations=100):
     if f(a) * f(b) >= 0:
         print(f"На интервале [{a}, {b}] не выполняется условие f(a)*f(b) < 0")
         return None
@@ -288,8 +297,19 @@ def task_4():
     y = f(x)
 
     plt.figure(figsize=(12, 6))
-    plt.plot(x, y, 'b-', linewidth=2, label='f(x) = -1.38x³ - 5.42x² + 2.57x + 10.95')
-    plt.axhline(y=0, color='k', linestyle='--', alpha=0.7)
+    plt.plot(
+        x,
+        y,
+        'b-',
+        linewidth=2,
+        label='f(x) = -1.38x³ - 5.42x² + 2.57x + 10.95'
+    )
+    plt.axhline(
+        y=0,
+        color='k',
+        linestyle='--',
+        alpha=0.7
+    )
     plt.grid(True, alpha=0.3)
     plt.xlabel('x')
     plt.ylabel('f(x)')
@@ -298,8 +318,18 @@ def task_4():
     for i in range(len(x) - 1):
         if y[i] * y[i + 1] <= 0:
             sign_changes.append((x[i], x[i + 1]))
-            plt.axvline(x=x[i], color='r', linestyle='--', alpha=0.5)
-            plt.axvline(x=x[i + 1], color='r', linestyle='--', alpha=0.5)
+            plt.axvline(
+                x=x[i],
+                color='r',
+                linestyle='--',
+                alpha=0.5
+            )
+            plt.axvline(
+                x=x[i + 1],
+                color='r',
+                linestyle='--',
+                alpha=0.5
+            )
 
     plt.show()
 
@@ -308,21 +338,28 @@ def task_4():
     bisection_roots = []
     for i, (a, b) in enumerate(intervals):
         print(f"\nКорень {i + 1}:")
-        root = bisection_method(f, a, b, tolerance=1e-3)
+        root = bisection_method(
+            f, a, b,
+            tolerance=1e-3)
         if root is not None:
             bisection_roots.append(root)
 
     combined_roots = []
     for i, (a, b) in enumerate(intervals):
         print(f"\nКорень {i + 1}:")
-        root = combined_method(f, df, a, b, tolerance=1e-5)
+        root = combined_method(
+            f, df, a, b,
+            tolerance=1e-5)
         if root is not None:
             combined_roots.append(root)
 
     return None
 
 
-def newton_system(F, J, x0, tol=1e-4, max_iter=100):
+def newton_system(
+        F, J, x0,
+        tol=1e-4,
+        max_iter=100):
     x = x0
     for i in range(max_iter):
         F_val = F(x)
