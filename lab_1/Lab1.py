@@ -61,6 +61,8 @@ def task_1():
     print("Q(via linalg) = \n", Q1)
     print("R(via linalg) = \n", R1)
 
+    return None
+
 
 def task_2():
     A = np.array([[8.2, -3.2, 14.2, 14.8], [5.6, -12, 15, -6.4], [5.7, 3.6, -12.4, -2.3], [6.8, 13.2, -6.3, -8.7]])
@@ -84,6 +86,8 @@ def task_2():
 
     print("X = ", X)
     print("Check via np.solve", np.linalg.solve(A, B))
+
+    return None
 
 
 def check_diagonal_dominance(A):
@@ -178,6 +182,8 @@ def task_3():
     df = pd.DataFrame(history, columns = ["i", "x1", "x2", "x3", "err"])
     print(df)
     print(np.linalg.solve(A, B))
+
+    return None
 
 
 def f(x):
@@ -300,6 +306,8 @@ def task_4():
         if root is not None:
             combined_roots.append(root)
 
+    return None
+
 
 def newton_system(F, J, x0, tol = 1e-4, max_iter = 100):
     x = x0
@@ -338,6 +346,8 @@ def task_5():
     sol, iters = newton_system(F, J, x0)
     print(f"Решение системы: x = {sol[0]:.5f}, y = {sol[1]:.5f}, итераций: {iters}")
     print("Проверка F(x) = 0:\n", F(sol))
+
+    return None
 
 
 def main():
