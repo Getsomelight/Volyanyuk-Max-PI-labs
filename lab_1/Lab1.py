@@ -1,3 +1,4 @@
+from collections.abc import Callable
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -5,7 +6,7 @@ import pandas as pd
 np.random.seed(1000)
 
 
-def qr_decompose(matrix_a):
+def qr_decompose(matrix_a: np.array) -> tuple[np.array, np.array]:
     """
     Performs QR decomposition of a matrix using Gram-Schmidt process
 
@@ -101,7 +102,7 @@ def task_2() -> None:
     print("Check via np.solve", np.linalg.solve(matrix_a, matrix_b))
 
 
-def check_diagonal_dominance(matrix_a):
+def check_diagonal_dominance(matrix_a: np.array) -> bool:
     """
     Checks if matrix has strict diagonal dominance
 
@@ -117,7 +118,9 @@ def check_diagonal_dominance(matrix_a):
     return True
 
 
-def rearrange_for_dominance(matrix_a, matrix_b):
+def rearrange_for_dominance(
+        matrix_a: np.array,
+        matrix_b: np.array) -> tuple[np.array, np.array, bool]:
     """
     Attempts to achieve diagonal dominance by row permutation
 
@@ -220,14 +223,14 @@ def task_3() -> None:
     print(np.linalg.solve(matrix_a, matrix_b))
 
 
-def f(x):
+def f(x: float) -> float:
     """
     Original equation y = f(x)
     """
     return -1.38 * x**3 - 5.42 * x**2 + 2.57 * x + 10.95
 
 
-def df(x):
+def df(x: float) -> float:
     """
     Derivative of the equation y = f`(x)
     """
@@ -235,9 +238,11 @@ def df(x):
 
 
 def bisection_method(
-        function, left_bound, right_bound,
+        function: Callable[[float], float],
+        left_bound: float,
+        right_bound: float,
         tolerance=1e-3,
-        max_iterations=100):
+        max_iterations=100) -> float:
     """
     Implements bisection method for finding equation roots
 
@@ -285,9 +290,12 @@ def bisection_method(
 
 
 def combined_method(
-        function, derived_function, left_bound, right_bound,
+        function: Callable[[float], float],
+        derived_function: Callable[[float], float],
+        left_bound: float,
+        right_bound: float,
         tolerance=1e-5,
-        max_iterations=100):
+        max_iterations=100) -> float:
     """
     Combined method of chords and tangents for solving equations
 
@@ -418,9 +426,11 @@ def task_4() -> None:
 
 
 def newton_system(
-        sys_equat, jac, x0,
+        sys_equat: Callable[[np.array], np.array],
+        jac: Callable[[np.array], np.array],
+        x0: float,
         tol=1e-4,
-        max_iter=100):
+        max_iter=100) -> tuple[int, int]:
     """
     Implements Newton's method for solving systems of nonlinear equations
 
@@ -442,7 +452,7 @@ def newton_system(
     return x, max_iter
 
 
-def system_equations(vector):
+def system_equations(vector: np.array) -> np.array:
     """
     System of nonlinear equations F(x,y) = 0
     vector: [x, y] - coordinates of the system
@@ -456,7 +466,7 @@ def system_equations(vector):
     )
 
 
-def jacobian_system(vector):
+def jacobian_system(vector: np.array) -> np.array:
     """
     Jacobian matrix for the system of equations
     vector: [x, y] - coordinates of the system
