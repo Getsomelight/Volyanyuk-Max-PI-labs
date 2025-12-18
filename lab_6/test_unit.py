@@ -42,7 +42,7 @@ def test_generate_3des_key_invalid_size():
         generate_3des_key(32)
 
 
-@pytest.mark.parametrize("key_size", [64, 128, 192])
+@pytest.mark.parametrize("key_size", [128, 192])
 def test_3des_encrypt_decrypt_roundtrip(key_size):
     key = generate_3des_key(key_size)
     plaintext = "Тестовое сообщение для 3DES"
@@ -77,3 +77,10 @@ def test_rsa_serialize_keys(tmp_path):
     assert private_key_path.exists()
     assert public_key_path.exists()
 
+
+def test_3des_key_64_fails_correctly():
+    """64-битные ключи не поддерживаются Crypto.Cipher.DES3"""
+    key = generate_3des_key(64)
+    plaintext = "test"
+    with pytest.raises(ValueError, match="Not a valid TDES key"):
+        encrypt_3des(plaintext, key)
