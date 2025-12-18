@@ -1,0 +1,18 @@
+2025-12-19 01:56:41,665 - __main__ - INFO - Запуск приложения с аргументами: {'generation': 128, 'encryption': False, 'decryption': False}
+2025-12-19 01:56:41,665 - __main__ - INFO - Начинается генерация ключей RSA (128 бит) и 3DES
+2025-12-19 01:57:08,989 - __main__ - INFO - Запуск приложения с аргументами: {'generation': 128, 'encryption': False, 'decryption': False}
+2025-12-19 01:57:08,989 - __main__ - INFO - Начинается генерация ключей RSA (128 бит) и 3DES
+2025-12-19 01:57:09,041 - __main__ - INFO - Ключи RSA сохранены: приватный=private.pem, публичный=public.pem
+2025-12-19 01:57:09,060 - __main__ - INFO - Зашифрованный ключ 3DES сохранен: symmetric_key.txt
+2025-12-19 01:57:09,061 - __main__ - INFO - Генерация ключей завершена успешно
+2025-12-19 01:57:09,061 - __main__ - INFO - Приложение завершено успешно
+2025-12-19 01:59:05,425 - __main__ - INFO - Запуск приложения с аргументами: {'generation': None, 'encryption': True, 'decryption': False}
+2025-12-19 01:59:05,425 - __main__ - INFO - Начало шифрования файла: text.txt -> encrypted_text.txt
+2025-12-19 01:59:05,527 - __main__ - INFO - Текст успешно зашифрован 3DES
+2025-12-19 01:59:05,527 - __main__ - INFO - Приложение завершено успешно
+2025-12-19 01:59:54,241 - __main__ - INFO - Запуск приложения с аргументами: {'generation': None, 'encryption': False, 'decryption': True}
+2025-12-19 01:59:54,241 - __main__ - ERROR - Ошибка дешифрования: name 'texttodecryptpath' is not defined
+2025-12-19 02:00:22,874 - __main__ - INFO - Запуск приложения с аргументами: {'generation': None, 'encryption': False, 'decryption': True}
+2025-12-19 02:00:22,874 - __main__ - INFO - Начало дешифрования файла: encrypted_text.txt -> decrypted_text.txt
+2025-12-19 02:00:22,918 - __main__ - INFO - Текст успешно дешифрован 3DES
+2025-12-19 02:00:22,918 - __main__ - INFO - Приложение завершено успешно
