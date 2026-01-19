@@ -5,41 +5,6 @@ import aiohttp
 from icrawler.builtin import GoogleImageCrawler
 
 
-class ImageIterator:
-    def __init__(self, annotation: str):
-        """
-        Initializes the ImageIterator with a path to a CSV file
-
-        args:
-        annotation (str): Path to the CSV file containing image paths
-        """
-        with open(annotation, 'r') as annotation:
-            read = csv.reader(annotation)
-            self.data = [r for r in read]
-            self.lim = len(self.data)
-            self.count = 0
-
-
-    def __iter__(self):
-        """
-        Returns the iterator object itself
-        """
-        return self
-
-
-    def __next__(self):
-        """
-        Returns the next item in the iteration
-        When the end of data is reached, raises StopIteration
-        """
-        if self.count < self.lim:
-            currow =  "".join(self.data[self.count])
-            self.count += 1
-            return currow
-        else:
-            raise StopIteration
-
-
 async def download_image(logger, session: aiohttp.ClientSession, url: str, filepath: str, timeout: int = 10) -> bool:
     """
     Downloads a single image asynchronously
